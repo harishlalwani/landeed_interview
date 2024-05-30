@@ -1,0 +1,82 @@
+{
+  "formPages": "2",
+  "timeout": "30", 
+  "pages": [ 
+    {
+      "name" : {
+        "label": "Name",
+        "required": true,
+        "type": "text", 
+        "validation": ["string"]
+      },
+      "description" : {
+        "label": "Description",
+        "required": false,
+        "type": "text"
+      },
+      "age" : {
+        "label": "Age",
+        "required": true,
+        "type": "number",
+        "range": [18, 60],
+        "validation": [ "number"]
+      },
+      "gender" : {
+        "label": "Gender",
+        "required": true,
+        "type": "radio",
+        "values": [
+          "Male",
+          "Female",
+          "Nonbinary"
+        ]
+      },
+      "profession1" : {
+        "label": "Profession",
+        "required": true,
+        "type": "customInputSelect",
+        "values": [
+          "Owner",
+          "Agent",
+          "Buyer",
+          "Seller",
+          "Other"
+        ],
+        "customInput": "text",
+        "validation": [ "number"]
+      }
+    },
+    {
+      "profession" : {
+        "label": "Profession",
+        "required": true,
+        "type": "select",
+        "values": [
+          "Owner",
+          "Agent",
+          "Buyer",
+          "Seller",
+          "Other"
+        ],
+        "customInput": "text",
+        "validation": [ "number"]
+      },
+      "profession2" : {
+        "label": "Profession2",
+        "required": true,
+        "type": "multiSelect",
+        "values": [
+          "Owner",
+          "Agent",
+          "Buyer",
+          "Seller"
+        ]
+      },
+      "services" : {
+        "label": "Services",
+        "required": false,
+        "type": "text"
+      }
+    }
+  ]
+}
