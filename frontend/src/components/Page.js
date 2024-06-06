@@ -51,6 +51,7 @@ function Page(props) {
     }, []);
 
     function setCurrentAnswer(event, inputIndex, input = {}) {
+        console.log('event, inputIndex, input', event, inputIndex, input);
         let ans = answers;
 
         if(ans) {
@@ -62,10 +63,10 @@ function Page(props) {
             ans = []
         }
         
-        console.log('ans', ans);
+        console.log('ans in page', ans);
         if(input.type == 'multiSelect') {
 
-            console.log('event.target', event.target);
+            //console.log('event.target', event.target);
             const options  = event.target.value;
             const value = [];
             for (let i = 0, l = options.length; i < l; i += 1) {
@@ -139,7 +140,7 @@ function Page(props) {
                             type="text" 
                             name={input.name} 
                             value={ans[inputIndex] ? ans[inputIndex] : ""} 
-                            onChange={(e) => setCurrentAnswer(e, inputIndex)}
+                            onChange={(e) => setCurrentAnswer(e, inputIndex, input)}
                         />
                     </FormControl>
                     
@@ -150,7 +151,7 @@ function Page(props) {
                     <div className="block" key={inputIndex}>
                         <FormControl className={classes.formControl}>
                         <FormLabel component="legend">{input.label}</FormLabel>
-                            <RadioGroup aria-label={input.name} name={input.name} onChange={(e) => setCurrentAnswer(e, inputIndex)} value={ans[inputIndex] ? ans[inputIndex] : ""}>
+                            <RadioGroup aria-label={input.name} name={input.name} onChange={(e) => setCurrentAnswer(e, inputIndex, input)} value={ans[inputIndex] ? ans[inputIndex] : ""}>
                                 {input.values.map((value, index) => (
                                     <FormControlLabel key={index} value={value} control={<Radio />} label={value} />  
                                 ))}
@@ -166,7 +167,7 @@ function Page(props) {
                             <InputLabel>{input.label}</InputLabel>
                             {input.values.map((value, index) => (
                                 <label>
-                                    <Input type="checkbox" name={input.name} value={value} onChange={(e) => setCurrentAnswer(e, inputIndex)} />
+                                    <Input type="checkbox" name={input.name} value={value} onChange={(e) => setCurrentAnswer(e, inputIndex, input)} />
                                     {value}
                                 </label>
                             ))}
@@ -293,7 +294,7 @@ function Page(props) {
                             error={_errors[inputIndex] && isEmpty(_errors[inputIndex] != '') ? true : false}
                             helperText={_errors[inputIndex] ? _errors[inputIndex] : ''}
                             type="number" name={input.name} 
-                            value={ans[inputIndex] ? ans[inputIndex] : ""} onChange={(e) => setCurrentAnswer(e, inputIndex)}/>
+                            value={ans[inputIndex] ? ans[inputIndex] : ""} onChange={(e) => setCurrentAnswer(e, inputIndex, input)}/>
                     </FormControl>
                      
                 </div>
@@ -308,7 +309,7 @@ function Page(props) {
                                 helperText={errors[inputIndex] ? errors[inputIndex] : ''}
                                 name={input.name} 
                                 value={ans[inputIndex] ? ans[inputIndex] : ""} 
-                                onChange={(e) => setCurrentAnswer(e, inputIndex)}
+                                onChange={(e) => setCurrentAnswer(e, inputIndex, input)}
                             />
                         </FormControl>
                     </div>

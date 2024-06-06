@@ -15,7 +15,7 @@
     "check": "tsc --noEmit",
     "eslint": "eslint . --ext .js,.ts",
     "upgrade": "npm update --save-dev && npm update --save",
-    "upgrade-latest": "npx npm-check-updates -u && npm install ",
+    "upgrade-latest": "npx npm-check-updates -u && npm install "
   },
   "dependencies": {
     "cors": "^2.8.5",

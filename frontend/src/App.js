@@ -1,23 +1,15 @@
 import React, {useReducer} from 'react';
 import { useState, useEffect } from "react";
-import Progress from './components/Progress';
-import Question from './components/Question';
 import Page from './components/Page';
-import Answers from './components/Answers';
-import QuizContext from './context/QuizContext';
 import FormContext from './context/FormContext.js';
 import CountDownTimer from "./components/CountDownTimer";
 
 
 
 import {
-    SET_ANSWERS,
-    SET_CURRENT_QUESTION,
-    SET_CURRENT_ANSWER,
     SET_ERROR,
     SET_SHOW_RESULTS,
     RESET_QUIZ,
-    SET_CURRENT_PAGE_ANSWERS,
     SET_ERRORS
 } from './reducers/types.js';
 import formReducer from './reducers/FormReducer';
@@ -41,6 +33,7 @@ function App() {
     const [formTimeout, setFormTimeout] =  useState(0);
     const [currentPage, setCurrentPage] = useState(0);
     const [pages, setPages ] = useState([]);
+    const [result, setResult ] = useState(false);
     const [formData, setFormData] = useState({
         pages: []
     });
@@ -51,6 +44,10 @@ function App() {
         //console.log('data', data);
         return data; 
     }
+
+    useEffect(() => {
+        setResult(showResults)
+    }, [showResults])
     // useEffect(() => {
     //     setTimeout(() => {
     //         setCount((count) => count + 1);
@@ -137,7 +134,14 @@ function App() {
                     },
                     body: JSON.stringify(formInputData)
                 });
-                const content = await rawResponse.json();
+
+                console.log('rawResponse', rawResponse);
+                let responseText = await rawResponse.text();
+                console.log('responseText', responseText);
+                if(responseText != "success") {
+                    throw "error";
+                }
+                //const content = await rawResponse .json();
                 
                 //console.log(content);
             })();
@@ -178,7 +182,7 @@ function App() {
     return (
         <FormContext.Provider value={{state, dispatch}}>
             {
-                showResults && (
+                result && (
                     <div className="container results">
                         <h2>Form Submitted Successfully</h2>
                         <button className="btn btn-primary" onClick={restart}>

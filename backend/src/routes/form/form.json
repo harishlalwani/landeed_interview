@@ -34,15 +34,13 @@
       "profession1" : {
         "label": "Profession",
         "required": true,
-        "type": "customInputSelect",
+        "type": "select",
         "values": [
           "Owner",
           "Agent",
           "Buyer",
-          "Seller",
-          "Other"
+          "Seller"
         ],
-        "customInput": "text",
         "validation": [ "number"]
       }
     },
@@ -55,10 +53,8 @@
           "Owner",
           "Agent",
           "Buyer",
-          "Seller",
-          "Other"
+          "Seller"
         ],
-        "customInput": "text",
         "validation": [ "number"]
       },
       "profession2" : {
